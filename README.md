@@ -1,5 +1,10 @@
 # Predict_receipts
 
+This is an application to predict the count of monthly receipts based on previous years daily receipt data
+
+
+## How to run
+
 Build the docker image and run the container
 
 docker build . -t receipts_predictor:latest
