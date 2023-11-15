@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Predicting Count of Monthly Receipts</title>
+</head>
+<body>
+    <h1>Predicting Count of Monthly Receipts</h1>
+    <h3>Enter a month in 2022</h3>
+    <h5>Please enter an integer between [1,12]</h5>
+    <form id="predictionForm">
+        <label for="inputValue">Input Value:</label>
+        <input type="text" id="inputValue" required>
+        <br>
+        <input type="button" value="Predict" onclick="predict()">
+    </form>
+    <div id="result"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

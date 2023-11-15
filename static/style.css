@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+#result {
+    margin-top: 20px;
+}
