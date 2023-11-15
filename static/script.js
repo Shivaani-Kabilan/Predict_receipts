@@ -10,7 +10,7 @@ function predict() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Display the result on the page
-            document.getElementById('result').innerHTML = 'Predicted value: ' + JSON.parse(xhr.responseText).prediction;
+            document.getElementById('result').innerHTML = 'Predicted Montly receipts count: ' + JSON.parse(xhr.responseText).prediction;
         }
     };
 

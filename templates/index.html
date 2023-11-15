@@ -8,15 +8,43 @@
 </head>
 <body>
     <h1>Predicting Count of Monthly Receipts</h1>
-    <h3>Enter a month in 2022</h3>
-    <h5>Please enter an integer between [1,12]</h5>
+    <h3>Enter a month in 2022 to predict</h3>
+    <h5>Please enter the month as integer between [1,12]</h5>
     <form id="predictionForm">
         <label for="inputValue">Input Value:</label>
         <input type="text" id="inputValue" required>
-        <br>
-        <input type="button" value="Predict" onclick="predict()">
+        <input type="button" class="button-5" value="Predict" onclick="predict()">
     </form>
     <div id="result"></div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+    <div style="padding-top: 60px;">
+
+        <form method = "POST" enctype="multipart/form-data" action = "/upload"> 
+            <input type="file" name="file" accept=".csv">
+            <input type = "submit" class="button-5" value="Upload"> 
+        </form>
+
+
+        <form method = "POST" enctype="multipart/form-data" action = "/train"> 
+            <input type = "submit" class="button-5" value="Train"> 
+        </form>
+
+    </div>
+
+    <div>
+        
+
+        <div class="divElement" style="border:1px solid black;">
+            <p style="padding-bottom: 20px;"><b>Preview</b></p>
+
+            <div style="align-content: center;padding-left: 20%;">
+            {{ data_var|safe }}
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
