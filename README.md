@@ -14,3 +14,4 @@ docker run -p 3000:5000 -td receipts_predictor
 check if container is running: docker ps
 
 Check 127.0.0.1:3000 address for the UI
+# Gh_actions
