@@ -76,5 +76,5 @@ def train_model2(data_path):
     print(predictions)
 
     # Save the predictions to a file using pickle
-    with open('output/model2_predictions.pkl', 'wb') as file:
+    with open('model2_predictions.pkl', 'wb') as file:
         pickle.dump(predictions, file)

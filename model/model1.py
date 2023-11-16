@@ -31,6 +31,8 @@ def train_model1(data_path):
     # Feature engineering
     df_agg = df.groupby(['Year', 'Month'], as_index=False)['Receipt_Count'].sum()
     df_agg['Prev_Month_Receipts'] = df_agg['Receipt_Count'].shift(1)
+    
+    monthy_2021 = df_agg['Receipt_Count'].values
 
     # Drop the first row as it will have NaN due to shift
     df_agg = df_agg.dropna()
@@ -98,3 +100,7 @@ def train_model1(data_path):
     # Save the predictions to a file using pickle
     with open('output/model1_predictions.pkl', 'wb') as file:
         pickle.dump(future_values, file)
+
+    # Save the 2021 receipts to a file using pickle
+    with open('output/2021receipts.pkl', 'wb') as g:
+        pickle.dump(monthy_2021, g)
