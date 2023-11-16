@@ -2,7 +2,14 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 50px;
-    background-color: rgb(161, 193, 161);
+    
+}
+
+body.dimming-background {
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 20%, rgba(112, 191, 112, 0.8) 100%);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 25px;
 }
 
 form {
@@ -19,7 +26,7 @@ form {
 .button-5 {
   align-items: center;
   background-clip: padding-box;
-  background-color: #5572dd;
+  background-color: #d282db;
   border: 1px solid transparent;
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -47,7 +54,7 @@ form {
 
 .button-5:hover,
 .button-5:focus {
-  background-color: #fb8332;
+  background-color: #f1b83c;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -79,6 +86,40 @@ form {
 } 
 
 
+.colored-heading1 {
+  color: rgb(109, 21, 150); 
+}
+
+.colored-heading2 {
+  color:rgb(157, 82, 157); 
+}
 
 
+
+.tooltip-btn {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip-btn::before {
+  content: attr(title);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.tooltip-btn:hover::before {
+  visibility: visible;
+  opacity: 1;
+}
 

@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Predicting Count of Monthly Receipts</title>
 </head>
-<body>
-    <h1>Predicting Count of Monthly Receipts</h1>
-    <h3>Enter a month in 2022 to predict</h3>
-    <h5>Please enter the month as integer between [1,12]</h5>
+<body class="dimming-background">
+    <h1 class="colored-heading1">Predicting Count of Monthly Receipts</h1>
+    <h3 class="colored-heading2">Enter a month in 2022 to predict the approximate <br> number of scanned receipts for that month</h3>
+    <h5 class="colored-heading2">(Please enter the Month Value as an integer from 1 to 12)</h5>
     <form id="predictionForm">
-        <label for="inputValue">Input Value:</label>
+        <label for="inputValue">Month Value:</label>
         <input type="text" id="inputValue" required>
-        <input type="button" class="button-5" value="Predict" onclick="predict()">
+        <input type="button" class="button-5 tooltip-btn" value="Predict" onclick="predict()" title="Click on this button to obtain the predicted count of receipts for the month of your choice">
     </form>
     <div id="result"></div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -21,18 +21,17 @@
 
     <div style="padding-top: 60px;">
 
-        <form method = "POST" enctype="multipart/form-data" action = "/upload"> 
+        <form method="POST" enctype="multipart/form-data" action="/upload">
             <input type="file" name="file" accept=".csv">
-            <input type = "submit" class="button-5" value="Upload"> 
+            <input type="submit" class="button-5 tooltip-btn" value="Upload" title="After selecting the input CSV file, click on this button to upload the file and get a preview of the file">
         </form>
 
-
         <form method = "POST" enctype="multipart/form-data" action = "/train"> 
-            <input type = "submit" class="button-5" value="Train"> 
+            <input type = "submit" class="button-5 tooltip-btn" value="Train" title="Click on this button to train the ML model"> 
         </form>
 
         <form method="POST" enctype="multipart/form-data" action = "/visualize">
-            <input type = "submit" class="button-5" value="Visualize">
+            <input type = "submit" class="button-5 tooltip-btn" value="Visualize" title="Click on this button to visualize the results">
         </form>
         
        
