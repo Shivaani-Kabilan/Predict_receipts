@@ -152,6 +152,13 @@ def visualize():
         return render_template('show_image.html', image_path=image_path)
         
 
+
+@app.route('/model_metrics', methods=['POST'])
+def model_metrics():
+    if request.method == 'POST':
+        #image_path = 'static/metrics.png'
+        return render_template('show_metrics.html')
+
  
 
 if __name__ == '__main__':

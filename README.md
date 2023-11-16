@@ -45,4 +45,6 @@ Train: Click on this button to train the ML models.
 
 Visualize: It visualizes the data and gives a plot, showing how the monthly scanned receipts has changed over the months in the years 2021 and 2022.
 
-
+Model metrics: It will show us the model metrics MSE and MAE.
+Plot1 shows how the Training and Validation MSE varies across Epochs.
+Plot1 shows how the Training and Validation MAE varies across Epochs.

@@ -8,11 +8,15 @@
 #pickle
 
 #!pip3 install pandas
-#!pip install tensorflow
+#!pip3 install tensorflow
 import pandas as pd
 import numpy as np
 import tensorflow as tf
 import pickle
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 # Assuming you have a dataset like the one you provided
 # "Date" column should be in datetime format
@@ -54,6 +58,12 @@ def train_model1(data_path):
 
     X_train, X_test = X_normalized[:split_index], X_normalized[split_index:]
     y_train, y_test = y_normalized[:split_index], y_normalized[split_index:]
+    
+    split_ind = int(len(X_train) * split_ratio)
+    
+    X_train, X_val = X_train[:split_ind], X_train[split_ind:]
+    y_train, y_val = y_train[:split_ind], y_train[split_ind:]
+    
 
     # Model architecture
     model = tf.keras.Sequential([
@@ -62,10 +72,48 @@ def train_model1(data_path):
     ])
 
     optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
-    model.compile(optimizer, loss='mean_squared_error')
+    model.compile(optimizer, loss='mean_squared_error', metrics=['mae'])
 
     # Training
-    model.fit(X_train, y_train, epochs=100, batch_size=8, verbose=2)
+    history = model.fit(X_train, y_train, epochs=100, validation_data=(X_val, y_val), batch_size=8, verbose=2)
+    epochs = 100
+    # Extracting MSE and MAE metrics from history
+    training_mse = history.history['loss']
+    validation_mse = history.history['val_loss']
+    training_mae = history.history['mae']
+    validation_mae = history.history['val_mae']
+
+    # Plotting the metrics
+    epochs_range = range(1, epochs + 1)
+
+    # Plotting the data
+    matplotlib.pyplot.switch_backend('Agg') 
+    plt.figure(figsize=(10, 4))
+
+    # Plot MSE
+    #plt.subplot(1, 2, 1)
+    plt.plot(epochs_range, training_mse, label='Training MSE')
+    plt.plot(epochs_range, validation_mse, label='Validation MSE')
+    plt.xlabel('Epochs')
+    plt.ylabel('MSE')
+    plt.title('Training and Validation MSE')
+    plt.legend()
+    plt.savefig('static/metrics1.png', format='png')
+    plt.close()
+
+    # Plot MAE
+    plt.figure(figsize=(10, 4))
+    #plt.subplot(1, 2, 2)
+    plt.plot(epochs_range, training_mae, label='Training MAE')
+    plt.plot(epochs_range, validation_mae, label='Validation MAE')
+    plt.xlabel('Epochs')
+    plt.ylabel('MAE')
+    plt.title('Training and Validation MAE')
+    plt.legend()
+
+    plt.savefig('static/metrics2.png', format='png')
+
+    plt.close()
 
     # Evaluation
     loss = model.evaluate(X_test, y_test)
